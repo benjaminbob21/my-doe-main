@@ -8,7 +8,11 @@
   "description": "code/ : contains all the code part data/ : data part           data/csv_files: contains 3 files for concatenated vulink, at500 and at200 sensors",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "name": "my-doe-main",
+    "start": "npm run start:backend && npm run start:frontend",
+    "start:backend": "cd backend && npm install && NODE_ENV=production pm2 start app.js --name backend",
+    "start:frontend": "cd frontend && npm install && NODE_ENV=production pm2 start --name frontend npm -- start"
   },
   "keywords": [],
   "author": "",
