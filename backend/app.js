@@ -14,7 +14,15 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
+app.use(
+  cors({
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "http://3.12.149.109:3000"
+        : process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 
 // Mount the data routes
 app.use("/api", route);
@@ -175,6 +183,8 @@ app.get("/api/waterqualityData/maxmin", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+app.get("/", (req, res) => res.json("Connected to API"));
 
 // Start the server
 const PORT = process.env.PORT || 5000;
