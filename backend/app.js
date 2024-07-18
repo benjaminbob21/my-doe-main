@@ -16,10 +16,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? "http://3.12.149.109:3000"
-        : process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (
+        process.env.NODE_ENV === "production" &&
+        origin === "http://3.12.149.109:3000"
+      ) {
+        callback(null, true);
+      } else if (
+        process.env.NODE_ENV !== "production" &&
+        origin === process.env.FRONTEND_URL
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
@@ -180,6 +191,98 @@ app.get("/api/waterqualityData/maxmin", async (req, res) => {
   } catch (error) {
     // Handle any errors that occur during the database query
     console.error("Error fetching max and min values:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/waterqualityData/DateTimePHMVTemperature", async (req, res) => {
+  try {
+    const data = await WaterQualityData.findAll({
+      attributes: ["DateTime", "pHMV", "pH", "Temperature"],
+      limit: 30,
+    });
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching DateTime and pHMV data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/waterqualityData/DateTimePH", async (req, res) => {
+  try {
+    const data = await WaterQualityData.findAll({
+      attributes: ["DateTime", "pH"],
+      limit: 30,
+    });
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching DateTime and pH data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/waterqualityData/DateTimePHMV", async (req, res) => {
+  try {
+    const data = await WaterQualityData.findAll({
+      attributes: ["DateTime", "pHMV"],
+      limit: 30,
+    });
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching DateTime and pHMV data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/waterqualityData/DateTimePHMV", async (req, res) => {
+  try {
+    const data = await WaterQualityData.findAll({
+      attributes: ["DateTime", "pH", "pHMV"],
+      limit: 30,
+    });
+    console.log("Fetched Data: ", data);
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching DateTime, pH, and pHMV data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/waterqualityData/DateTimePHTemperature", async (req, res) => {
+  try {
+    const data = await WaterQualityData.findAll({
+      attributes: ["DateTime", "pH", "Temperature"],
+      limit: 30,
+    });
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching DateTime, pH, and Temperature data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/batteryData/DateTimeBatteryLevel", async (req, res) => {
+  try {
+    const data = await BatteryData.findAll({
+      attributes: ["DateTime", "BatteryLevel"],
+      limit: 30,
+    });
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching DateTime and BatteryLevel data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/batteryData/DateTimeTemperature", async (req, res) => {
+  try {
+    const data = await BatteryData.findAll({
+      attributes: ["DateTime", "Temperature"],
+      limit: 100,
+    });
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching DateTime and Temperature data:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });

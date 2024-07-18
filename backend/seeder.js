@@ -13,16 +13,19 @@ async function seedWaterQualityDataFromCSV(filePath) {
         .pipe(csvParser())
         .on('data', (row) => {
           rows.push({
-            DateTime: new Date(row['Date Time']),
-            Salinity: parseFloat(row['Salinity (psu)']),
-            TotalDissolvedSolids: parseFloat(row['Total Dissolved Solids (mg/L)']),
-            pH: parseFloat(row['pH (pH)']),
-            pHMV: parseFloat(row['pH MV (mV)']),
-            SaturationOxygen: parseFloat(row['% Saturation O₂ (% sat)']),
-            PartialPressureOxygen: parseFloat(row['Partial Pressure O₂ (psi)']),
-            StationID: row['station_id'],
-            Easting: parseFloat(row['easting']),
-            Northing: parseFloat(row['northing'])
+            DateTime: new Date(row["Date Time"]),
+            Salinity: parseFloat(row["Salinity (psu)"]),
+            TotalDissolvedSolids: parseFloat(
+              row["Total Dissolved Solids (mg/L)"]
+            ),
+            pH: parseFloat(row["pH (pH)"]),
+            pHMV: parseFloat(row["pH MV (mV)"]),
+            SaturationOxygen: parseFloat(row["% Saturation O₂ (% sat)"]),
+            PartialPressureOxygen: parseFloat(row["Partial Pressure O₂ (psi)"]),
+            StationID: row["station_id"],
+            Easting: parseFloat(row["easting"]),
+            Northing: parseFloat(row["northing"]),
+            Temperature: parseFloat(row["Temperature (C)"]),
           });
         })
         .on('end', async () => {

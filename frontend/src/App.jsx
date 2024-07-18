@@ -52,17 +52,21 @@
 // // export default PaginatedData;
 
 import React from "react";
-import RectangleVisualization from "./components/RectangleVisualization";
-import RectangleVisualization2 from "./components/RectangleVisualization2";
-import RectangleVisualization3 from "./components/RectangleVisualization3";
+import Mainnav from "./components/Mainnav";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
+
   return (
-    <div className="flex flex-col items-center px-5 pb-5">
-      <RectangleVisualization />
-      <RectangleVisualization2 />
-      <RectangleVisualization3 />
-    </div>
+    <>
+      <h1 className="pt-[60px] pb-2 text-blue-500 font-bold text-3xl tracking-tight">
+        Data Analysis
+      </h1>
+      <h1 className="pb-16 text-blue-500 tracking-tight">
+        Slide from one dataset to another with ease!
+      </h1>
+      <Mainnav/>
+    </>
   );
 }
 

@@ -42,4 +42,8 @@ export const WaterQualityData = sequelize.define("WaterQualityData", {
     type: DataTypes.FLOAT,
     allowNull: true,
   },
+  Temperature: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+  },
 });

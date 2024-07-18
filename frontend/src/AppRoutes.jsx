@@ -6,6 +6,13 @@ import Login from "./pages/Login";
 import { useAppContext } from "./contexts/AppContext";
 import LayoutIn from "./layouts/LayoutIn";
 import Banner from "./components/Banner";
+import RectangleVisualization from "./components/RectangleVisualization";
+import DateTimePHVisualization from "./components/DateTimePHVisualization";
+import DateTimePHMVVisualization from "./components/DateTimePHMVVisualization";
+import PhPhmvTemperatureVisualization from "./components/PhPhmvTemperatureVisualization";
+import PhTemperatureVisualization from "./components/pHTemperatureVisualization";
+import PhPhmvVisualization from "./components/PhPhmvVisualization";
+import ProtectedRoute from "./contexts/ProtectedRoute";
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAppContext();
@@ -20,7 +27,7 @@ const AppRoutes = () => {
             </LayoutIn>
           ) : (
             <Layout showHero Home>
-              <Banner/>
+              <Banner />
             </Layout>
           )
         }
@@ -42,6 +49,59 @@ const AppRoutes = () => {
         }
       ></Route>
       <Route path="*" element={<Navigate to="/" />}></Route>
+
+
+
+      <Route element={<ProtectedRoute />}>
+        <Route
+          path="/prev1"
+          element={
+            <LayoutIn showHero>
+              <RectangleVisualization />
+            </LayoutIn>
+          }
+        ></Route>
+        <Route
+          path="/datetime-ph1"
+          element={
+            <LayoutIn showHero>
+              <DateTimePHVisualization />
+            </LayoutIn>
+          }
+        ></Route>
+        <Route
+          path="/datetime-phmv1"
+          element={
+            <LayoutIn showHero>
+              <DateTimePHMVVisualization />
+            </LayoutIn>
+          }
+        ></Route>
+        <Route
+          path="/pHmvTemperature-visualization1"
+          element={
+            <LayoutIn showHero>
+              <PhPhmvTemperatureVisualization />
+            </LayoutIn>
+          }
+        ></Route>
+        <Route
+          path="/pHmv-visualization1"
+          element={
+            <LayoutIn showHero>
+              <PhPhmvVisualization />
+            </LayoutIn>
+          }
+        ></Route>
+        <Route
+          path="/pHTemperature-visualization1"
+          element={
+            <LayoutIn showHero>
+              <PhTemperatureVisualization />
+            </LayoutIn>
+          }
+        ></Route>
+      </Route>
     </Routes>
   );
 };
