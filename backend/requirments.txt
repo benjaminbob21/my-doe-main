@@ -1,0 +1,6 @@
+cors
+morgan
+express-session
+bcrypt
+connect-session-sequelize
+http-proxy-middleware
