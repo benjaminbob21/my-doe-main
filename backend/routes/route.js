@@ -27,7 +27,21 @@ const { validateMyUserRequest, loginCorrect } = validation;
 const app = express();
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (
+        process.env.NODE_ENV === "production" &&
+        origin === "http://3.12.149.109:3000"
+      ) {
+        callback(null, true);
+      } else if (
+        process.env.NODE_ENV !== "production" &&
+        origin === process.env.FRONTEND_URL
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "DELETE"],
     credentials: true,
   })
