@@ -19,7 +19,7 @@ app.use(
     origin: (origin, callback) => {
       if (
         process.env.NODE_ENV === "production" &&
-        origin === "http://3.12.149.109:3000"
+        origin === "http://3.142.77.97:3000"
       ) {
         callback(null, true);
       } else if (
