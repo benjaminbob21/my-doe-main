@@ -7,12 +7,14 @@ import { useAppContext } from "./contexts/AppContext";
 import LayoutIn from "./layouts/LayoutIn";
 import Banner from "./components/Banner";
 import RectangleVisualization from "./components/RectangleVisualization";
-import DateTimePHVisualization from "./components/DateTimePHVisualization";
-import DateTimePHMVVisualization from "./components/DateTimePHMVVisualization";
-import PhPhmvTemperatureVisualization from "./components/PhPhmvTemperatureVisualization";
-import PhTemperatureVisualization from "./components/pHTemperatureVisualization";
-import PhPhmvVisualization from "./components/PhPhmvVisualization";
+import DateTimePHVisualization from "./components/firstvisuals/DateTimePHVisualization";
+import DateTimePHMVVisualization from "./components/firstvisuals/DateTimePHMVVisualization";
+import PhPhmvTemperatureVisualization from "./components/firstvisuals/PhPhmvTemperatureVisualization";
+import PhTemperatureVisualization from "./components/firstvisuals/pHTemperatureVisualization";
+import PhPhmvVisualization from "./components/firstvisuals/PhPhmvVisualization";
 import ProtectedRoute from "./contexts/ProtectedRoute";
+import RectangleVisualization2 from "./components/RectangleVisualization2";
+import RectangleVisualization3 from "./components/RectangleVisualization3";
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAppContext();
@@ -50,14 +52,28 @@ const AppRoutes = () => {
       ></Route>
       <Route path="*" element={<Navigate to="/" />}></Route>
 
-
-
       <Route element={<ProtectedRoute />}>
         <Route
           path="/prev1"
           element={
             <LayoutIn showHero>
               <RectangleVisualization />
+            </LayoutIn>
+          }
+        ></Route>
+        <Route
+          path="/prev2"
+          element={
+            <LayoutIn showHero>
+              <RectangleVisualization2 />
+            </LayoutIn>
+          }
+        ></Route>
+        <Route
+          path="/prev3"
+          element={
+            <LayoutIn showHero>
+              <RectangleVisualization3 />
             </LayoutIn>
           }
         ></Route>

@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "production") {
   API_BASE_URL = "http://3.142.77.97:5000";
 }
 
-function RectangleVisualization() {
+function RectangleVisualization2() {
   const [minMaxValues, setMinMaxValues] = useState({
     minEasting: null,
     maxEasting: null,
@@ -108,4 +108,4 @@ function RectangleVisualization() {
   );
 }
 
-export default RectangleVisualization;
+export default RectangleVisualization2;

@@ -1,9 +1,11 @@
-import Slidedata1 from "./Slidedata1";
+import Slidedata1 from "./firstvisuals/Slidedata1";
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Slidedata2 from "./secondvisuals/Slidedata2";
+import Slidedata3 from "./thirdvisuals/Slidedata3";
 
 const NextArrow = ({ onClick, currentSlide, slideCount }) => {
   return (
@@ -54,7 +56,10 @@ const Mainnav = () => {
         <Slidedata1 />
       </div>
       <div>
-        <Slidedata1 />
+        <Slidedata2 />
+      </div>
+      <div>
+        <Slidedata3/>
       </div>
     </Slider>
   );
