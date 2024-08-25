@@ -1,0 +1,8 @@
+.gitattributes
+**/.ipynb_checkpoints/
+.DS_Store
+/venv/
+
+
+node_modules
+/research_papers/
